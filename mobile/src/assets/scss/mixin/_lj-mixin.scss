@@ -1,0 +1,337 @@
+/**
+* 旋转角度
+**/
+
+@mixin oRotate() {
+  @for $r from 0 through 24 {
+    .rot-#{15*$r} {
+      transform: rotate(15*$r+deg);
+    }
+  }
+}
+
+
+/**
+* [oFsSet 设置12到40px 的字体大小相隔2pxeg:fs-12]
+* @param  {[type]} $l:14    [长度]
+* @param  {[type]} $mul:2   [间隔]
+* @param  {[type]} $unit:px [单位]
+* @param  {[type]} $d:12    [最小字体大小]
+* @return {[type]}          [description]
+*/
+
+@mixin oFsSet($l:14, $mul:2, $unit:px, $d:12) {
+  @for $fs from 0 through $l {
+    .fs-#{$d+$fs*$mul} {
+      font-size: $d+$fs*$mul+$unit;
+    }
+  }
+}
+
+
+/**
+* [oPdMgSet 默认设置5到50的各个padding margin]
+* @param  {[type]} $max:10   [基数]
+* @param  {[type]} $mul:5  [倍数]
+* @param  {[type]} $unit:px [单位]
+* @return {[type]}          [description]
+*/
+
+@mixin oPdMgSet($max:10, $mul:5, $unit:px) {
+  @for $padding-size from 1 through $max {
+    .pd-x#{$padding-size*$mul} {
+      padding: 0 $padding-size * $mul+$unit;
+    }
+    .pd-y#{$padding-size*$mul} {
+      padding: $padding-size * $mul+$unit 0;
+    }
+    .pd-f#{$padding-size*$mul} {
+      padding: $padding-size * $mul+$unit;
+    }
+    .pd-t#{$padding-size*$mul} {
+      padding-top: $padding-size * $mul+$unit;
+    }
+    .pd-r#{$padding-size*$mul} {
+      padding-right: $padding-size * $mul+$unit;
+    }
+    .pd-b#{$padding-size*$mul} {
+      padding-bottom: $padding-size * $mul+$unit;
+    }
+    .pd-l#{$padding-size*$mul} {
+      padding-left: $padding-size * $mul+$unit;
+    }
+    .mg-x#{$padding-size*$mul} {
+      margin: 0 $padding-size * $mul+$unit;
+    }
+    .mg-y#{$padding-size*$mul} {
+      margin: $padding-size * $mul+$unit 0;
+    }
+    .mg-f#{$padding-size*$mul} {
+      margin: $padding-size * $mul+$unit;
+    }
+    .mg-t#{$padding-size*$mul} {
+      margin-top: $padding-size * $mul+$unit;
+    }
+    .mg-r#{$padding-size*$mul} {
+      margin-right: $padding-size * $mul+$unit;
+    }
+    .mg-l#{$padding-size*$mul} {
+      margin-left: $padding-size * $mul+$unit;
+    }
+    .mg-b#{$padding-size*$mul} {
+      margin-bottom: $padding-size * $mul+$unit;
+    }
+  }
+}
+
+
+/**
+* [iCB clear both清除浮动]
+* @param  {[type]} $old:false [true为生成兼容低版本的浏览器]
+* @return {[type]}            [description]
+*/
+
+@mixin iCB($old:false) {
+  @if $old {
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+      font: 0/0 a;
+    }
+  }
+  @else {
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+
+/**
+* [iBtnBgColor 设置btn背景加hover,active时变亮变暗]
+* @param  {[type]} $color:gray     [初始颜色]
+* @param  {[type]} $type:1         [=0使用传入的颜色，>1变亮，<1变暗]
+* @param  {[type]} $hover:2        [hover颜色或百分比]
+* @param  {[type]} $active:10      [active颜色或百分比]
+* @param  {[type]} $time:1         [动画时间 eg:0.3s]
+* @param  {[type]} $animation:1    [动画属性 eg: ease]
+* @return {[type]}             [description]
+*/
+
+@mixin iBtnBgColor($color:gray, $type:-1, $hover:2, $active:8, $time:0.3s, $animation:ease) {
+  background-color: $color;
+  &:hover {
+    @if $type==0 {
+      background-color: $color
+    }
+    @if $type>0 {
+      background-color: lighten($color, $hover)
+    }
+    @if $type<0 {
+      background-color: darken($color, $hover)
+    }
+    transition: all $time $animation;
+  }
+  &:active {
+    @if $type==0 {
+      background-color: $color
+    }
+    @if $type>0 {
+      background-color: lighten($color, $active)
+    }
+    @if $type<0 {
+      background-color: darken($color, $active)
+    }
+  }
+}
+
+
+/* <flex> */
+
+@mixin oFlex() {
+  // http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+  //  flex-direction属性决定主轴的方向（即项目的排列方向）。
+  //  flex-wrap 属性定义，如果一条轴线排不下，如何换行
+  //  flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+  // justify-content属性定义了项目在主轴(x轴)上的对齐方式。
+  // align-items属性定义项目在交叉轴(y轴)上如何对齐。
+  // align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+  // order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+  //  flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+  //  flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+  //  flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+  //  flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+  // align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+  .a-s-s {
+    align-self: start;
+  }
+  .flex1 {
+    flex: 1
+  }
+  .flex2 {
+    flex: 2
+  }
+  .flex3 {
+    flex: 3
+  }
+  .flex4 {
+    flex: 4
+  }
+  .flex5 {
+    flex: 5
+  }
+  .flex-box {
+    display: flex;
+  }
+  .flex-box-end {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .flex-space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-space-between-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: flex-end;
+  }
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-center-around {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+  .flex-middle {
+    display: flex;
+    align-items: center;
+  }
+  .flex-stretch {
+    display: flex;
+    align-items: stretch;
+  }
+  .flex-end {
+    align-self: flex-end;
+  }
+  .flex-start {
+    align-items: flex-start;
+  }
+  .flex-noshrink {
+    flex-shrink: 0;
+  }
+}
+
+@mixin oReset() {
+  * {
+    font-family: 'Microsoft YaHei', arial, sans-serif, "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+  }
+  body {
+    -webkit-text-size-adjust: none;
+  }
+  img {
+    border: 0;
+    vertical-align: middle;
+  }
+  ul,
+  li {
+    list-style: none
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  a,
+  button,
+  select,
+  input {
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    outline: none;
+  }
+  textarea {
+    resize: none;
+    outline: none;
+  }
+  article,
+  aside,
+  dialog,
+  footer,
+  header,
+  section,
+  footer,
+  nav,
+  figure,
+  menu,
+  main {
+    display: block
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  input[type=button] {
+    -webkit-appearance: none;
+    outline: none
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+  a[title="站长统计"] {
+    display: none;
+  }
+}

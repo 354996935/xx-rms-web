@@ -1,0 +1,18 @@
+// 文字相关
+
+/*
+文字
+*/
+@mixin text-ellipsis () {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@mixin text-ellipsis-multi($row:1){
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+}

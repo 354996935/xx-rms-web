@@ -1,0 +1,140 @@
+@import "./var";
+@import "mixin";
+@import "./common";
+@import "./vant-theme";
+@import "./spinner";
+@import "./vant-mod";
+a {
+  color: #000
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overflow : hidden;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 14px;
+  background: #fff;
+}
+
+.view-router {
+  // background-color: $bg-color;
+  // height: 100vh;
+  // overflow-y: auto;
+  // padding-bottom: 50px;
+  // box-sizing: border-box;
+}
+
+//商品详情页
+.item_desc {
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+// 公共css放这里
+// mixin 详见 ../mixins/_mixins.scss
+// reset
+@include oReset();
+// fs 12 to 40px; eg: fs-12 fs-16
+@include oFsSet();
+// pd mg 5 to 50 ltbr;  pd-t5 pd-r5 pd-b5 pd-r5: 上右下左   mg-f5:各个方向 mg-x5: x轴方向 mg-y5: y轴方向
+@include oPdMgSet();
+// pd mg 8 ltbr eg: pd-l8 pd-l16 pd-l24 pd-l36
+@include oPdMgSet(4, 8);
+// rotate 0 to 360 eg: rot-90
+@include oRotate();
+// flex相关
+@include oFlex();
+.c-gray {
+  color: $grayText;
+}
+
+.c-blue {
+  color: $blue;
+}
+
+.c-white {
+  color: #fff;
+}
+
+.of-a {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.of-h {
+  overflow: hidden;
+}
+
+// 白色背景
+.bg-w {
+  background-color: #fff;
+}
+
+.bg-b {
+  background-color: $blue;
+}
+
+.b {
+  font-weight: bold;
+}
+
+// 清除浮动
+.c-b {
+  @include iCB();
+}
+
+// 宽度100%
+.full-w {
+  width: 100%;
+}
+
+// 高度100%
+.full-h {
+  height: 100%;
+}
+
+// 对齐方式
+.ta-c {
+  text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+// 文字省略号
+.text-of {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 修改palcehoder字体颜色
+::-moz-placeholder { color: #bebebe !important; }
+::-webkit-input-placeholder { color:#bebebe !important; }
+:-ms-input-placeholder { color:#bebebe !important; }
+
+.flex {
+  display: flex;
+}
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-1 {
+  flex: 1;
+}

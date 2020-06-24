@@ -1,0 +1,5 @@
+export const LOGIN = '/pub/login'
+export const LOGOUT = '/usr/logout'
+export const UPSERT_CLASS_USER = 'usr/upsertClassUser'
+export const VERIFY_PHONE = 'usr/verifyPhone'
+export const ACCEPT_CLASS_USER = 'usr/acceptClassUser'

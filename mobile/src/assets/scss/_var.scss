@@ -1,0 +1,42 @@
+// 主题色
+$subject-color: #0262F1;
+
+$red: #db3d3c;
+$blue: #F02646;
+$blue-deep: #2173db;
+$gray-deep: #999;
+$gray: #bfbfbf;
+$gray-shallow: #e5e5e5;
+$gray-shallow-more: #f2f2f2;
+$gray-input-bg: #f1f1f1;
+$icon-bg: #f9f3e8;
+// icon color
+$iconBlue: $blue;
+$iconYellow: #f8ac3d;
+$iconGreen: #61bc9d;
+$iconPink: #f97561;
+$grayText: #8d8d8d;
+//字体变量
+$font-color-gray: $gray-deep;
+$font-size-small: 12px;
+$font-size-normal: 14px;
+$font-size-big: 16px;
+$border-color: $gray-shallow;
+$bg-color: $gray-shallow-more;
+$g-blue: #F02646;
+//背景颜色
+$bg-color-gray: #f5f5f5;
+%bgWFull {
+  position: relative;
+  background-color: #fff;
+  &::before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background-color: #fff;
+  }
+}

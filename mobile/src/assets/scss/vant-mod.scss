@@ -1,0 +1,21 @@
+.vant-mod {
+  &.van-search {
+    border-bottom: 1px solid $gray-input-bg;
+    .van-cell {
+      padding-left: 20px;
+      background: $gray-input-bg;
+      color: $gray-deep;
+      border-radius: 20px;
+    }
+    input::-webkit-input-placeholder {
+      color: $gray-deep;
+    }
+    .search-btn {
+      background: $g-blue;
+      width: 50px;
+      text-align: center;
+      color: white;
+      border-radius: 2px;
+    }
+  }
+}

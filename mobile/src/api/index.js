@@ -1,0 +1,6 @@
+export const LIST_COURSE = 'usr/listCourse'
+export const LIST_CHAPTER = 'usr/listChapter'
+export const LOAD_TEACH_RECORD = 'usr/loadTeachRecord'
+export const LOAD_CHAPTER = 'usr/loadChapter'
+export const UPSERT_USER_CHAPTER_CONTENT = 'usr/upsertUserChapterContent'
+export const LIST_MY_COURSE = 'usr/listMyCourse'
